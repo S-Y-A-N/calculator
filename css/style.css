@@ -1,0 +1,129 @@
+:root {
+    --primary-light: hsl(246, 100%, 83%);
+    --primary-dark: hsl(255, 81%, 25%);
+    --secondary-dark: rgb(56, 56, 56);
+    --active: hsl(255, 81%, 30%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'VT323', monospace;
+}
+
+body {
+    background-image: url(../media/purple-mountain-landscape.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
+    text-align: center;
+}
+
+header {
+    min-height: 50px;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    min-height: 50px;
+}
+
+footer p {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    font-weight: bold;
+}
+
+.fa-github {
+    margin-left: 5px;
+}
+
+h1 {
+    text-align: center;
+    margin: 60px;
+    color: var(--primary-light);
+    letter-spacing: 10px;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    font-size: 2em;
+    /* box-shadow: 0 0 10px inset var(--active); */
+}
+
+button:hover {
+    background-color: var(--active);
+    cursor: pointer;
+}
+
+.container {
+    width: 420px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: 0 0 10px 1px var(--primary-dark);
+}
+
+.screen {
+    height: 120px;
+    margin-bottom: 20px;
+    background-color: var(--primary-dark);
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px inset var(--active); */
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+#clear, #delete {
+    grid-column: span 2;
+}
+
+.red {
+    background-color: hsl(305, 100%, 90%);
+    color: var(--primary-dark);
+    box-shadow: 0 0 20px 0 inset hsl(305, 29%, 49%);
+}
+
+.blue {
+    background-color: hsl(240, 100%, 90%);
+    color: var(--primary-dark);
+    box-shadow: 0 0 20px 0 inset hsl(240, 29%, 49%);
+}
+
+.red:hover {
+    background-color: hsl(305, 100%, 87%);
+}
+
+.blue:hover {
+    background-color: hsl(240, 100%, 87%);
+}
