@@ -52,10 +52,12 @@ footer a:hover {
 
 h1 {
     text-align: center;
-    margin: 40px 0 10px;
+    margin: 50px 0 10px;
     letter-spacing: 10px;
     font-size: 4em;
     font-weight: normal;
+    color: var(--light);
+    text-shadow: -2px 2px var(--dark);
 }
 
 button {
@@ -84,10 +86,21 @@ button:hover {
 }
 
 .screen {
+    display: flex;
     height: 150px;
     margin-bottom: 20px;
+    padding: 5px 10px;
     border-radius: 5px;
     background-color: var(--light);
+    font-size: 2em;
+}
+
+.screen .top {
+    align-self: flex-start;
+}
+
+.screen .bottom {
+    align-self: flex-end;
 }
 
 .buttons-grid {
