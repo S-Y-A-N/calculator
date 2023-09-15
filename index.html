@@ -18,31 +18,36 @@
 
     <main class="flex-center">
         <div class="container">
-            <div class="screen"></div>
+            <div class="screen">
+                <div class="top" id="topScreen"></div>
+                <div class="bottom" id="bottomScreen"></div>
+            </div>
+
             <div class="buttons-grid">
                 <button id="clear">CLEAR</button>
                 <button id="delete">DELETE</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>+</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>-</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>×</button>
+                <button value="7" data-num>7</button>
+                <button value="8" data-num>8</button>
+                <button value="9" data-num>9</button>
+                <button value="+" data-op>+</button>
+                <button value="4" data-num>4</button>
+                <button value="5" data-num>5</button>
+                <button value="6" data-num>6</button>
+                <button value="-" data-op>-</button>
+                <button value="1" data-num>1</button>
+                <button value="2" data-num>2</button>
+                <button value="3" data-num>3</button>
+                <button value="*" data-op>×</button>
                 <button>.</button>
-                <button>0</button>
-                <button>/</button>
-                <button>=</button>
+                <button value="0" data-num>0</button>
+                <button value="/" data-op>/</button>
+                <button id="equal">=</button>
             </div>
         </div>
     </main>
 
     <footer>
+        <p>[15/9/2023] Note: DELETE, DOT (.), keyboard support, and operations involving more than two terms do not work. They will work in the future.</p>
         <p><a href="https://github.com/S-Y-A-N" target="_blank"><i class="fa fa-github"></i> S-Y-A-N</a> | <a href="https://github.com/S-Y-A-N/calculator" target="_blank">Source Code</a></p>
     </footer>
 </body>
