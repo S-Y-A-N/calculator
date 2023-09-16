@@ -12,4 +12,6 @@ A simple calculator web application, done for [The Odin Project](https://www.the
 
 ## Attribution
 
-* [Background Image by kjpargeter on Freepik](https://www.freepik.com/free-photo/purple-mountain-landscape_5073497.htm#query=pixel%20sky&position=19&from_view=search&track=ais)
+* [Background Image by kjpargeter - Freepik](https://www.freepik.com/free-photo/purple-mountain-landscape_5073497.htm#query=pixel%20sky&position=19&from_view=search&track=ais)
+
+* [Calculator Favicon by Freepik - Flaticon](https://www.flaticon.com/free-icons/calculator)
