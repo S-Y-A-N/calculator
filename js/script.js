@@ -1,82 +1,65 @@
 // DOM Variables
 
-const operators = document.querySelectorAll('button[data-op]');
-const numbers = document.querySelectorAll('button[data-num]');
-const equal = document.getElementById('equal');
-const del = document.getElementById('delete');
-const clear = document.getElementById('clear');
+let a = '';
+let b = '';
+let op = '';
 
+const operatorButtons = document.querySelectorAll('button[data-op]');
+const numberButtons = document.querySelectorAll('button[data-num]');
+const equalButton = document.getElementById('equal');
+const deleteButton = document.getElementById('delete');
+const clearButton = document.getElementById('clear');
 const topScreen = document.getElementById('topScreen');
 const bottomScreen = document.getElementById('bottomScreen');
-const numRegex = /\d+/;
-const opRegex = /([\*\-\+\/])+/
-
-// a = text until op, b = text after op
-let a = '', b = '', op;
 
 // Event Listeners
 
-operators.forEach(op => {
-    op.addEventListener('click', e => {
-        showExpression(getOperator(e));
-    });
+equalButton.addEventListener('click', evaluate);
+clearButton.addEventListener('click', clear);
+deleteButton.addEventListener('click', deleteNumber);
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => setOperator(button.textContent));
 });
 
-numbers.forEach(num => {
-    num.addEventListener('click', e => {
-        showExpression(getNumber(e))
-    });
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => setNumber(button.textContent));
 });
-
-equal.addEventListener('click', showResult);
-clear.addEventListener('click', clearScreen);
 
 // DOM Functions
 
-function getNumber(e) {
-    return e.target.value;
+function setNumber(number) {
+    bottomScreen.textContent += number;
 }
 
-function getOperator(e) {
-    return e.target.value;
+function setOperator(operator) {
+    if(op !== '') evaluate();
+    if(topScreen.textContent = '') return;
+    if(a == '') a = bottomScreen.textContent;
+    op = operator;
+    topScreen.textContent = `${a} ${op}`;
+    bottomScreen.textContent = '';
 }
 
-function showExpression(exp) {
-    if(opRegex.test(exp) && (!numRegex.test(topScreen.textContent) || opRegex.test(topScreen.textContent))) return;
-    let content;
-
-    if(numRegex.test(exp) && !opRegex.test(topScreen.textContent)) {
-        content = document.createTextNode(exp);
-        topScreen.appendChild(content);
-        a += exp;
-    }
-
-    if(opRegex.test(exp)
-        && !opRegex.test(topScreen.textContent)
-        && numRegex.test(topScreen.textContent)) {
-        content = document.createTextNode(exp);
-        topScreen.appendChild(content);
-        op = exp;
-    }
-
-    if(numRegex.test(exp) && opRegex.test(topScreen.textContent)) {
-        content = document.createTextNode(exp);
-        topScreen.appendChild(content);
-        b += exp;
-    }
-
-}
-
-function showResult() {
-    let result = calculate(a, b, op);
+function evaluate() {
+    b = bottomScreen.textContent;
+    topScreen.textContent += ' ' + b;
+    let result = operate(op, a, b);
     bottomScreen.textContent = result;
+    a = result;
+    op = '';
 }
 
-function clearScreen() {
-    topScreen.innerText = '';
-    bottomScreen.innerText = '';
+function clear() {
+    topScreen.textContent = '';
+    bottomScreen.textContent = '';
     a = '';
     b = '';
+    op = '';
+}
+
+function deleteNumber() {
+    
 }
 
 // Calculator Logic
@@ -94,11 +77,11 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if(b === 0) return 'ERROR: Cannot Divide by Zero!'
+    if(b === 0) return 'ERROR: Cannot Divide by Zero!';
     return a / b;
 }
 
-function calculate(a, b, op) {
+function operate(op, a, b) {
     a = Number(a);
     b = Number(b);
     let result;
@@ -110,7 +93,7 @@ function calculate(a, b, op) {
         case '-':
             result = subtract(a, b);
             break;
-        case '*':
+        case '×':
             result = multiply(a, b);
             break;
         case '/':
