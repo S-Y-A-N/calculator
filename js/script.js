@@ -3,6 +3,7 @@
 let a = '';
 let b = '';
 let op = '';
+let evaluated = false;
 
 const operatorButtons = document.querySelectorAll('button[data-op]');
 const numberButtons = document.querySelectorAll('button[data-num]');
@@ -29,16 +30,18 @@ numberButtons.forEach(button => {
 // DOM Functions
 
 function setNumber(number) {
+    if(evaluated) return;
     bottomScreen.textContent += number;
 }
 
 function setOperator(operator) {
     if(op !== '') evaluate();
     if(topScreen.textContent = '') return;
-    if(a == '') a = bottomScreen.textContent;
+    if(!evaluated) a = bottomScreen.textContent;
     op = operator;
     topScreen.textContent = `${a} ${op}`;
     bottomScreen.textContent = '';
+    evaluated = false;
 }
 
 function evaluate() {
@@ -48,6 +51,7 @@ function evaluate() {
     bottomScreen.textContent = result;
     a = result;
     op = '';
+    evaluated = true;
 }
 
 function clear() {
