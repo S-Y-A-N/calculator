@@ -11,7 +11,8 @@
 }
 
 body {
-    background-image: url(../media/purple-mountain-landscape.jpg);
+    /* background-image: url(../media/purple-mountain-landscape.jpg); */
+    background-image: url(../media/3d-mountain-landscape-with-purple-sunset-sky.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -87,20 +88,27 @@ button:hover {
 
 .screen {
     display: flex;
-    height: 150px;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    min-height: 120px;
     margin-bottom: 20px;
     padding: 5px 10px;
     border-radius: 5px;
     background-color: var(--light);
-    font-size: 2em;
+    word-break: break-all;
+    text-align: left;
+    word-spacing: -10px;
 }
 
 .screen .top {
     align-self: flex-start;
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
 .screen .bottom {
     align-self: flex-end;
+    font-size: 3em;
 }
 
 .buttons-grid {
