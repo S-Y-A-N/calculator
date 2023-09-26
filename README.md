@@ -12,7 +12,7 @@ A simple calculator web application, done for [The Odin Project](https://www.the
 
 ## Attribution
 
-* [Background Image (pink) by kjpargeter - Freepik](https://www.freepik.com/free-photo/purple-mountain-landscape_5073497.htm#query=pixel%20sky&position=19&from_view=search&track=ais)
+<!-- * [Background Image (pink) by kjpargeter - Freepik](https://www.freepik.com/free-photo/purple-mountain-landscape_5073497.htm#query=pixel%20sky&position=19&from_view=search&track=ais) -->
 
 * [Background Image (purple) by kjpargeter - Freepik](https://www.freepik.com/free-photo/3d-mountain-landscape-with-purple-sunset-sky_2447066.htm#from_view=detail_alsolike)
 
