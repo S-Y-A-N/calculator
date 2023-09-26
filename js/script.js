@@ -3,7 +3,9 @@
 let a = '';
 let b = '';
 let op = '';
-let evaluated = false;
+let isEvaluated = false;
+let shouldClear = false;
+const DEFAULT_VALUE = 0;
 
 const operatorButtons = document.querySelectorAll('button[data-op]');
 const numberButtons = document.querySelectorAll('button[data-num]');
@@ -12,6 +14,7 @@ const deleteButton = document.getElementById('delete');
 const clearButton = document.getElementById('clear');
 const topScreen = document.getElementById('topScreen');
 const bottomScreen = document.getElementById('bottomScreen');
+bottomScreen.textContent = DEFAULT_VALUE;
 
 // Event Listeners
 
@@ -30,28 +33,47 @@ numberButtons.forEach(button => {
 // DOM Functions
 
 function setNumber(number) {
-    if(evaluated) return;
+    if(isEvaluated) return;
+    if(shouldClear) clear();
+    if(bottomScreen.textContent == DEFAULT_VALUE) bottomScreen.textContent = '';
     bottomScreen.textContent += number;
 }
 
 function setOperator(operator) {
+    // Prevents typing an operator before a number
+    if(bottomScreen.textContent == '') return;
+
+    // Performs previous operation first if an operator is clicked again
     if(op !== '') evaluate();
-    if(topScreen.textContent = '') return;
-    if(!evaluated) a = bottomScreen.textContent;
+
+    // Prevents typing an operator after division by zero
+    if(shouldClear) return;
+
+    // 1st operand equals typed number ONLY after a clear start
+    if(!isEvaluated) a = bottomScreen.textContent;
+
     op = operator;
     topScreen.textContent = `${a} ${op}`;
     bottomScreen.textContent = '';
-    evaluated = false;
+    isEvaluated = false;
 }
 
 function evaluate() {
+    // Prevents error when clicking '=' without a new operation OR after division by zero
+    if(isEvaluated || shouldClear) return;
+    
     b = bottomScreen.textContent;
-    topScreen.textContent += ' ' + b;
+    
+    // Prevents error when clicking '=' without typing 1st or 2nd operands
+    if(a == '' || b == '') return;
+
+    topScreen.textContent += ' ' + b + ' =';
     let result = operate(op, a, b);
     bottomScreen.textContent = result;
     a = result;
     op = '';
-    evaluated = true;
+    isEvaluated = true;
+    if(isNaN(result)) isEvaluated = false;
 }
 
 function clear() {
@@ -60,6 +82,9 @@ function clear() {
     a = '';
     b = '';
     op = '';
+    isEvaluated = false;
+    shouldClear = false;
+    bottomScreen.textContent = DEFAULT_VALUE;
 }
 
 function deleteNumber() {
@@ -81,7 +106,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if(b === 0) return 'ERROR: Cannot Divide by Zero!';
+    if(b === 0) {
+        shouldClear = true;
+        return 'ERROR: Cannot Divide by Zero!';
+    }
     return a / b;
 }
 
