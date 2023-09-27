@@ -12,6 +12,8 @@ const numberButtons = document.querySelectorAll('button[data-num]');
 const equalButton = document.getElementById('equal');
 const deleteButton = document.getElementById('delete');
 const clearButton = document.getElementById('clear');
+const pointButton = document.getElementById('point');
+
 const topScreen = document.getElementById('topScreen');
 const bottomScreen = document.getElementById('bottomScreen');
 bottomScreen.textContent = DEFAULT_VALUE;
@@ -21,6 +23,7 @@ bottomScreen.textContent = DEFAULT_VALUE;
 equalButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', deleteNumber);
+pointButton.addEventListener('click', addPoint);
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => setOperator(button.textContent));
@@ -35,7 +38,10 @@ numberButtons.forEach(button => {
 function setNumber(number) {
     if(isEvaluated) return;
     if(shouldClear) clear();
-    if(bottomScreen.textContent == DEFAULT_VALUE) bottomScreen.textContent = '';
+    if(bottomScreen.textContent == DEFAULT_VALUE && !bottomScreen.textContent.includes('.')) {
+            bottomScreen.textContent = '';
+        }
+        
     bottomScreen.textContent += number;
 }
 
@@ -54,7 +60,7 @@ function setOperator(operator) {
 
     op = operator;
     topScreen.textContent = `${a} ${op}`;
-    bottomScreen.textContent = '';
+    bottomScreen.textContent = DEFAULT_VALUE;
     isEvaluated = false;
 }
 
@@ -73,7 +79,10 @@ function evaluate() {
     a = result;
     op = '';
     isEvaluated = true;
-    if(isNaN(result)) isEvaluated = false;
+    if(isNaN(result)) {
+        isEvaluated = false;
+        shouldClear = true;
+    }
 }
 
 function clear() {
@@ -85,6 +94,11 @@ function clear() {
     isEvaluated = false;
     shouldClear = false;
     bottomScreen.textContent = DEFAULT_VALUE;
+}
+
+function addPoint() {
+    if(bottomScreen.textContent.includes('.')) return;
+    bottomScreen.textContent += '.';
 }
 
 function deleteNumber() {
@@ -107,7 +121,6 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if(b === 0) {
-        shouldClear = true;
         return 'ERROR: Cannot Divide by Zero!';
     }
     return a / b;
