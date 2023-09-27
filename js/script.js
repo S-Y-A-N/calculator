@@ -41,13 +41,13 @@ function setNumber(number) {
     if(bottomScreen.textContent == DEFAULT_VALUE && !bottomScreen.textContent.includes('.')) {
             bottomScreen.textContent = '';
         }
-        
+
     bottomScreen.textContent += number;
 }
 
 function setOperator(operator) {
     // Prevents typing an operator before a number
-    if(bottomScreen.textContent == '') return;
+    // if(bottomScreen.textContent == '') return;
 
     // Performs previous operation first if an operator is clicked again
     if(op !== '') evaluate();
@@ -56,11 +56,11 @@ function setOperator(operator) {
     if(shouldClear) return;
 
     // 1st operand equals typed number ONLY after a clear start
-    if(!isEvaluated) a = bottomScreen.textContent;
+    if(a == '') a = bottomScreen.textContent;
 
     op = operator;
     topScreen.textContent = `${a} ${op}`;
-    bottomScreen.textContent = DEFAULT_VALUE;
+    bottomScreen.textContent = '';
     isEvaluated = false;
 }
 
@@ -69,7 +69,7 @@ function evaluate() {
     if(isEvaluated || shouldClear) return;
     
     b = bottomScreen.textContent;
-    
+
     // Prevents error when clicking '=' without typing 1st or 2nd operands
     if(a == '' || b == '') return;
 
@@ -98,11 +98,13 @@ function clear() {
 
 function addPoint() {
     if(bottomScreen.textContent.includes('.')) return;
+    if(bottomScreen.textContent == '') bottomScreen.textContent = DEFAULT_VALUE;
     bottomScreen.textContent += '.';
 }
 
 function deleteNumber() {
-    
+    if(bottomScreen.textContent == '') return;
+    bottomScreen.textContent = bottomScreen.textContent.slice(0, -1);
 }
 
 // Calculator Logic
