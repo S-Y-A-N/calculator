@@ -64,7 +64,7 @@ h1 {
 button {
     border: none;
     border-radius: 5px;
-    padding: 20px;
+    padding: 17px;
     background-color: transparent;
     font-size: 2em;
     color: var(--light);
@@ -77,10 +77,11 @@ button:hover {
 }
 
 .container {
-    width: 420px;
-    margin: 10px auto;
+    width: 100%;
+    max-width: 380px;
+    margin: 10px 20px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 13px;
     background-color: var(--dark);
     opacity: .5;
     box-shadow: 0 0 10px 1px var(--primary-dark);
@@ -93,7 +94,7 @@ button:hover {
     min-height: 120px;
     margin-bottom: 20px;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 7px;
     background-color: var(--light);
     word-break: break-all;
     text-align: left;
