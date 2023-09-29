@@ -24,6 +24,7 @@ equalButton.addEventListener('click', evaluate);
 clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', deleteNumber);
 pointButton.addEventListener('click', addPoint);
+window.addEventListener('keydown', keyboardListener);
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => setOperator(button.textContent));
@@ -34,6 +35,15 @@ numberButtons.forEach(button => {
 });
 
 // DOM Functions
+
+function keyboardListener(e) {
+    if(e.key >= 0 && e.key <= 9) setNumber(e.key);
+    if(e.key == '+' || e.key == '-' || e.key == '*' || e.key == '/') setOperator(e.key);
+    if(e.key == '.') addPoint();
+    if(e.key == '=' || e.key == 'Enter') evaluate();
+    if(e.key == 'Backspace') deleteNumber();
+    if(e.key == 'Escape') clear();
+}
 
 function setNumber(number) {
     if(isEvaluated) return;
@@ -132,6 +142,7 @@ function operate(op, a, b) {
     a = Number(a);
     b = Number(b);
     let result;
+    if(op == '×') op = '*';
 
     switch(op) {
         case '+':
@@ -140,7 +151,7 @@ function operate(op, a, b) {
         case '-':
             result = subtract(a, b);
             break;
-        case '×':
+        case '*':
             result = multiply(a, b);
             break;
         case '/':
