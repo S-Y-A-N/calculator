@@ -25,6 +25,8 @@ body {
 }
 
 header {
+    display: flex;
+    flex-direction: column;
     min-height: 50px;
 }
 
@@ -52,7 +54,7 @@ footer a:hover {
 
 h1 {
     text-align: center;
-    margin: 50px 0 10px;
+    margin: 10px 0;
     letter-spacing: 10px;
     font-size: 4em;
     font-weight: normal;
@@ -128,9 +130,8 @@ button:hover {
 }
 
 .bg-button {
-    position: absolute;
-    left: 0;
     margin: 20px;
+    margin-bottom: 5px;
     padding: 0;
     width: 40px;
     height: 40px;
