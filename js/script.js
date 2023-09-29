@@ -7,13 +7,13 @@ let isEvaluated = false;
 let shouldClear = false;
 const DEFAULT_VALUE = 0;
 
+const allButtons = document.querySelectorAll('.buttons-grid button');
 const operatorButtons = document.querySelectorAll('button[data-op]');
 const numberButtons = document.querySelectorAll('button[data-num]');
 const equalButton = document.getElementById('equal');
 const deleteButton = document.getElementById('delete');
 const clearButton = document.getElementById('clear');
 const pointButton = document.getElementById('point');
-
 const topScreen = document.getElementById('topScreen');
 const bottomScreen = document.getElementById('bottomScreen');
 bottomScreen.textContent = DEFAULT_VALUE;
@@ -25,6 +25,10 @@ clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', deleteNumber);
 pointButton.addEventListener('click', addPoint);
 window.addEventListener('keydown', keyboardListener);
+
+allButtons.forEach(button => {
+    button.addEventListener('click', blur);
+})
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => setOperator(button.textContent));
