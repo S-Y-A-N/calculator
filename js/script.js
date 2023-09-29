@@ -113,7 +113,7 @@ function addPoint() {
 }
 
 function deleteNumber() {
-    if(bottomScreen.textContent == '') return;
+    if(bottomScreen.textContent == '' || isEvaluated || shouldClear) return;
     bottomScreen.textContent = bottomScreen.textContent.slice(0, -1);
 }
 
