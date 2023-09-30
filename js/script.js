@@ -104,6 +104,7 @@ function clear() {
     isEvaluated = false;
     shouldClear = false;
     bottomScreen.textContent = DEFAULT_VALUE;
+    bottomScreen.style.fontSize = '';
 }
 
 function addPoint() {
@@ -132,9 +133,6 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if(b === 0) {
-        return 'ERROR: Cannot Divide by Zero!';
-    }
     return a / b;
 }
 
@@ -155,6 +153,10 @@ function operate(op, a, b) {
             result = multiply(a, b);
             break;
         case '/':
+            if(b === 0) {
+                bottomScreen.style.fontSize = '2.5em';
+                return 'ERROR: Cannot Divide by Zero!';
+            }
             result = divide(a, b);
             break;
     }
