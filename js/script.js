@@ -7,7 +7,6 @@ let isEvaluated = false;
 let shouldClear = false;
 const DEFAULT_VALUE = 0;
 
-const allButtons = document.querySelectorAll('.buttons-grid button');
 const operatorButtons = document.querySelectorAll('button[data-op]');
 const numberButtons = document.querySelectorAll('button[data-num]');
 const equalButton = document.getElementById('equal');
@@ -25,10 +24,6 @@ clearButton.addEventListener('click', clear);
 deleteButton.addEventListener('click', deleteNumber);
 pointButton.addEventListener('click', addPoint);
 window.addEventListener('keydown', keyboardListener);
-
-allButtons.forEach(button => {
-    button.addEventListener('click', blur);
-})
 
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => setOperator(button.textContent));
@@ -73,6 +68,7 @@ function setOperator(operator) {
     if(a == '') a = bottomScreen.textContent;
 
     op = operator;
+    if(op == '*') op = '×';
     topScreen.textContent = `${a} ${op}`;
     bottomScreen.textContent = '';
     isEvaluated = false;
@@ -111,7 +107,7 @@ function clear() {
 }
 
 function addPoint() {
-    if(bottomScreen.textContent.includes('.')) return;
+    if(bottomScreen.textContent.includes('.') || isEvaluated || shouldClear) return;
     if(bottomScreen.textContent == '') bottomScreen.textContent = DEFAULT_VALUE;
     bottomScreen.textContent += '.';
 }
@@ -163,5 +159,9 @@ function operate(op, a, b) {
             break;
     }
 
-    return result;
+    return roundResult(result);
+}
+
+function roundResult(result) {
+    return Math.round(result * 1000000000) / 1000000000;
 }
